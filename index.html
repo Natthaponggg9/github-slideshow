@@ -11,3 +11,186 @@ layout: presentation
 <section id="overview" class="step" {% for attr in site.overview-data %} data-{{attr[0]}}="{{attr[1]}}"{% endfor %}></section>
 {% endif %}
 {% endunless %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ง้อวาที่รัก ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  max-width: 480px;
+  width: 100%;
+}
+
+h1 {
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #555;
+}
+
+img.slider {
+  width: 100%;
+  border-radius: 15px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.buttons {
+  margin: 15px 0;
+}
+
+button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#yes { background: #e74c3c; color: white; }
+#no  { background: #ddd;   color: #555; }
+#loveBtn { background: #ff69b4; color: white; }
+
+/* ====== จดหมายรัก (Modal) ====== */
+#letterBox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.letter {
+  background: #fffaf0;
+  padding: 25px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: pop 0.4s ease-out;
+}
+
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.letter h2 {
+  color: #e74c3c;
+}
+
+.closeBtn {
+  margin-top: 15px;
+  background: #e74c3c;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>ขอโทษนะ วา ❤️</h1>
+
+  <!-- สไลด์รูป -->
+  <img id="slideImg" class="slider" 
+       src="https://i.imgur.com/6RZlJQH.jpeg" 
+       alt="รูปคู่ของเรา">
+
+  <div class="buttons">
+    <button onclick="prevSlide()">⟨ ก่อนหน้า</button>
+    <button onclick="nextSlide()">ถัดไป ⟩</button>
+  </div>
+
+  <p>
+  พี่เจรู้ว่าทำให้วาเสียใจ  
+  และเสียใจมากจริง ๆ  
+  อยากขอโอกาสแก้ตัวอีกสักครั้งนะ  
+  สัญญาว่าจะดูแลหัวใจวาให้ดีกว่านี้ 💕
+  </p>
+
+  <div class="buttons">
+    <button id="yes" onclick="forgive()">ให้อภัย 💖</button>
+    <button id="no" onclick="stillAngry()">ยังโกรธอยู่ 😢</button>
+    <button id="loveBtn" onclick="openLetter()">💌 บอกรักเค้า</button>
+  </div>
+
+</div>
+
+<!-- ====== จดหมายรักเด้งขึ้นมา ====== -->
+<div id="letterBox">
+  <div class="letter">
+    <h2>💌 จดหมายถึง วา</h2>
+    <p>
+      วาที่รัก…  
+      พี่เจรักวานะ  
+      รักมากกว่าที่คำพูดจะบอกได้  
+      ขอบคุณที่อยู่ข้างพี่เจเสมอ  
+      และพี่อยากดูแลวาไปนาน ๆ เลย 💕
+    </p>
+    <button class="closeBtn" onclick="closeLetter()">ปิดจดหมาย</button>
+  </div>
+</div>
+
+<!-- เพลงประกอบ -->
+<audio controls autoplay loop style="display:block; margin:20px auto;">
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" 
+          type="audio/mpeg">
+</audio>
+
+<script>
+// ----- สไลด์รูป -----
+const slides = [
+  "https://i.imgur.com/6RZlJQH.jpeg",
+  "https://i.imgur.com/KZ1XQ4P.jpeg",
+  "https://i.imgur.com/Ve9y9p7.jpeg"
+];
+let currentIndex = 0;
+
+function showSlide(i) {
+  document.getElementById("slideImg").src = slides[i];
+}
+
+function prevSlide() {
+  currentIndex = (currentIndex <= 0) ? slides.length-1 : currentIndex-1;
+  showSlide(currentIndex);
+}
+
+function nextSlide() {
+  currentIndex = (currentIndex >= slides.length-1) ? 0 : currentIndex+1;
+  showSlide(currentIndex);
+}
+
+// ----- จดหมายรัก -----
+function openLetter() {
+  document.getElementById("letterBox").style.display = "flex";
+}
+
+function closeLetter() {
+  document.getElementById("letterBox").style.display = "none";
+}
+</script>
